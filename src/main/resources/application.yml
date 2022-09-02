@@ -1,0 +1,29 @@
+server:
+  port: 2020
+  
+spring:
+  application:
+    name: CUSTOMER-GATEWAY
+  zipkin:
+    base-url: http://localhost:9411/
+
+  cloud:
+    gateway:
+      routes:
+      - id: customer-details
+        uri: lb://CUSTOMER-DETAIL
+        predicates:
+        - Path=/customer/**
+      - id: customer-payments
+        uri: lb://CUSTOMER-PAYMENT
+        predicates:
+        - Path=/payment/**
+        
+          
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    register-with-eureka: true
+  
