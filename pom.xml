@@ -70,7 +70,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -80,14 +79,31 @@
 					<mainClass>com.cloud.customer.gateway.CustomerGatewayApplication</mainClass>
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>com.spotify</groupId> <artifactId>dockerfile-maven-plugin</artifactId> 
-				<configuration> <useMavenSettingsForAuth>true</useMavenSettingsForAuth> <repository>chitrangad/${project.artifactId}.jar</repository> 
-				<version>${project.version}</version> <buildArgs> <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE> 
-				</buildArgs> </configuration> <executions> <execution> <id>default</id> <phase>install</phase> 
-				<goals> <goal>build</goal> <goal>push</goal> </goals> <inherited>false</inherited> 
-				<configuration> </configuration> </execution> </executions> </plugin> -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<configuration>
+					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+					<repository>chitrangad/${project.artifactId}.jar</repository>
+					<version>${project.version}</version>
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default</id>
+						<phase>install</phase>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+						<inherited>false</inherited>
+						<configuration></configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 		<finalName>customer-gateway</finalName>
 	</build>
-
 </project>
